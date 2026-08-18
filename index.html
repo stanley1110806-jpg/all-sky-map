@@ -2,9 +2,8 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D 進階夏季星空天球模擬器 (手機版)</title>
-    <meta name="description" content="包含地球、天球經緯線與寫實星體特效的夏季星空模擬器">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ALL-SKY 88 - 專業天球模擬器</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -14,7 +13,7 @@
             --accent: #7aa2f7;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { 
             overflow: hidden; 
             background: var(--bg-dark); 
@@ -33,27 +32,25 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 24px;
+            padding: 16px;
         }
 
-        header { text-align: center; }
+        header { text-align: center; margin-top: 10px; }
         header h1 { 
-            font-size: 1.4rem; 
+            font-size: 1.3rem; 
             font-weight: 700; 
             letter-spacing: 3px;
             background: linear-gradient(to right, #89ddff, #c0caf5, #bb9af7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 4px;
         }
-        header p { font-size: 0.9rem; color: #565f89; letter-spacing: 3px; }
+        header p { font-size: 0.7rem; color: #565f89; letter-spacing: 2px; }
 
         #star-label {
             position: fixed;
             pointer-events: none;
             display: none;
             transform: translate(-50%, -150%);
-            transition: opacity 0.2s;
             z-index: 100;
         }
         .label-content {
@@ -61,11 +58,11 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(122, 162, 247, 0.4);
             border-radius: 12px;
-            padding: 8px 20px;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--primary-glow);
+            padding: 6px 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
-        .label-name { font-size: 1rem; font-weight: 600; color: #fff; text-shadow: 0 0 8px var(--primary-glow); }
-        .label-coords { font-size: 0.7rem; color: #7aa2f7; margin-top: 2px; }
+        .label-name { font-size: 0.9rem; font-weight: 600; color: #fff; }
+        .label-coords { font-size: 0.6rem; color: #7aa2f7; }
 
         #bottom-controls {
             pointer-events: auto;
@@ -73,49 +70,49 @@
             flex-direction: column;
             align-items: center;
             gap: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 10px;
             width: 100%;
         }
 
+        /* 星星選單：改為網格佈局，避免一長條太亂 */
         #sub-menu {
             display: none;
             background: var(--panel-bg);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
+            border-radius: 18px;
             padding: 12px;
-            max-width: 90vw;
-            overflow-x: auto;
-            white-space: nowrap;
+            width: 100%;
+            max-height: 35vh; 
+            overflow-y: auto; 
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
         }
-        .star-grid { display: flex; gap: 8px; }
+        .star-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 8px; 
+            justify-content: center;
+        }
         .star-item {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 8px 16px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 0.85rem;
+            border-radius: 10px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
             color: #a9b1d6;
+            transition: all 0.2s;
         }
-        .star-item:hover { 
-            background: rgba(122, 162, 247, 0.2); 
-            border-color: #7aa2f7; 
-            color: #fff;
-            transform: translateY(-4px);
-        }
-        .star-item.active { background: #7aa2f7; color: #1a1b26; border-color: #fff; font-weight: 600; }
+        .star-item.active { background: #7aa2f7; color: #1a1b26; border-color: #fff; }
 
+        /* 星座選單：橫向捲動 */
         #const-menu {
             display: flex;
-            gap: 8px;
-            padding: 6px;
+            gap: 6px;
+            padding: 6px 12px;
             background: rgba(0, 0, 0, 0.4);
-            border-radius: 50px;
+            border-radius: 40px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            max-width: 95vw;
+            width: 100%;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
@@ -124,96 +121,43 @@
             background: transparent;
             border: none;
             color: #787c99;
-            padding: 8px 16px; white-space: nowrap; font-size: 0.9rem;
+            padding: 6px 14px;
+            white-space: nowrap;
+            font-size: 0.85rem;
             font-weight: 600;
-            border-radius: 40px;
+            border-radius: 20px;
             cursor: pointer;
-            transition: all 0.4s;
-            letter-spacing: 1px;
         }
-        .const-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
         .const-btn.active { 
-            background: linear-gradient(135deg, #7aa2f7, #bb9af7);
+            background: #7aa2f7;
             color: #fff;
-            box-shadow: 0 0 20px rgba(122, 162, 247, 0.4);
         }
 
-        /* 星體詳細資料面板 - 手機版 Bottom Sheet */
+        /* 星體詳細資料面板 (Bottom Sheet) */
         #detail-panel {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+            bottom: 0; left: 0; width: 100%;
             background: rgba(8, 12, 28, 0.95);
             backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(122, 162, 247, 0.3);
             border-radius: 24px 24px 0 0;
             padding: 24px 24px 40px;
-            pointer-events: auto;
             transform: translateY(100%);
             transition: transform 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
             z-index: 20;
             display: flex;
             flex-direction: column;
         }
         #detail-panel.visible { transform: translateY(0); }
-        .dp-drag-handle {
-            width: 40px;
-            height: 4px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 2px;
-            margin: -10px auto 16px;
-        }
-        .dp-close {
-            position: absolute;
-            top: 16px;
-            right: 24px;
-            font-size: 24px;
-            color: rgba(255,255,255,0.5);
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-        }
-        .dp-close:hover { color: white; }
-        .dp-type {
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        .dp-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 4px;
-            line-height: 1.3;
-        }
-        .dp-divider {
-            height: 1px;
-            background: linear-gradient(to right, rgba(122,162,247,0.5), transparent);
-            margin: 12px 0;
-        }
-        .dp-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 8px;
-            font-size: 0.78rem;
-        }
+        .dp-drag-handle { width: 40px; height: 4px; background: rgba(255,255,255,0.3); border-radius: 2px; margin: -10px auto 16px; }
+        .dp-close { position: absolute; top: 16px; right: 24px; font-size: 24px; color: rgba(255,255,255,0.5); background: none; border: none; cursor: pointer; }
+        .dp-type { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+        .dp-name { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 4px; line-height: 1.3; }
+        .dp-divider { height: 1px; background: linear-gradient(to right, rgba(122,162,247,0.5), transparent); margin: 12px 0; }
+        .dp-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; font-size: 0.78rem; }
         .dp-label { color: #565f89; }
         .dp-value { color: #c0caf5; font-weight: 600; }
-        .dp-desc {
-            margin-top: 14px;
-            font-size: 0.75rem;
-            color: #787c99;
-            line-height: 1.6;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            padding-top: 12px;
-        }
-
+        .dp-desc { margin-top: 14px; font-size: 0.75rem; color: #787c99; line-height: 1.6; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 12px; }
+        
         .summer-triangle-badge {
             display: inline-block;
             background: linear-gradient(135deg, rgba(255,200,60,0.2), rgba(255,160,30,0.15));
@@ -223,12 +167,7 @@
             font-size: 0.65rem;
             color: #ffc83c;
             margin-top: 6px;
-            letter-spacing: 1px;
         }
-
-        #sub-menu::-webkit-scrollbar { height: 4px; }
-        #sub-menu::-webkit-scrollbar-track { background: transparent; }
-        #sub-menu::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -242,7 +181,7 @@
     </div>
 
     <div id="detail-panel">
-        <div class="dp-drag-handle" id="dp-handle"></div>
+        <div class="dp-drag-handle"></div>
         <button class="dp-close" id="dp-close">&times;</button>
         <div class="dp-type" id="dp-type"></div>
         <div class="dp-name" id="dp-name"></div>
@@ -279,7 +218,6 @@
         import * as THREE from 'three';
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-        // --- 變數宣告 ---
         let CONSTELLATIONS = [];
         const starEntries = [];
         const constGroups = [];
@@ -349,8 +287,38 @@
                 buildUIButtons();
             } catch (error) {
                 console.error("載入失敗:", error);
-                alert("JSON 讀取失敗！請檢查檔案路徑或 JSON 格式錯誤（例如 RA 是否包含非數字字元）。");
+                alert("載入失敗！請檢查 JSON 格式（特別是 RA 欄位是否為有效數字）。");
             }
+        }
+
+        // --- 建立天球經緯線 (Celestial Grid) ---
+        function buildGrid() {
+            const gridGroup = new THREE.Group();
+            // 緯線 (Declination)
+            for(let d = -80; d <= 80; d += 20) {
+                const radius = sphereRadius * Math.cos(d * Math.PI / 180);
+                const y = sphereRadius * Math.sin(d * Math.PI / 180);
+                const points = [];
+                for(let i=0; i<=64; i++) {
+                    const ang = (i/64) * Math.PI * 2;
+                    points.push(new THREE.Vector3(radius * Math.cos(ang), y, radius * Math.sin(ang)));
+                }
+                const geo = new THREE.BufferGeometry().setFromPoints(points);
+                const mat = new THREE.LineBasicMaterial({ color: 0x4488bb, transparent: true, opacity: 0.3 });
+                gridGroup.add(new THREE.Line(geo, mat));
+            }
+            // 經線 (Right Ascension)
+            for(let r = 0; r < 360; r += 30) {
+                const points = [];
+                for(let i=0; i<=64; i++) {
+                    const ang = (i/64) * Math.PI * 2;
+                    points.push(new THREE.Vector3(sphereRadius * Math.cos(r*Math.PI/180) * Math.cos(ang), sphereRadius * Math.sin(ang), sphereRadius * Math.sin(r*Math.PI/180) * Math.cos(ang)));
+                }
+                const geo = new THREE.BufferGeometry().setFromPoints(points);
+                const mat = new THREE.LineBasicMaterial({ color: 0x4488bb, transparent: true, opacity: 0.3 });
+                gridGroup.add(new THREE.Line(geo, mat));
+            }
+            scene.add(gridGroup);
         }
 
         function buildSkyMap() {
@@ -430,7 +398,6 @@
             constGroups.forEach((g, i) => { if(g.material) g.material.opacity = (i === ci ? 0.6 : 0); });
             allConstBtns.forEach((b, i) => b.classList.toggle('active', i === ci));
 
-            // 生成子選單按鈕
             subMenu.style.display = 'block';
             starBtns.innerHTML = '';
             CONSTELLATIONS[ci].stars.forEach((s, si) => {
@@ -442,10 +409,30 @@
             });
         }
 
+        // --- 選取效果 ---
+        let selectedEntry = null;
+        let selectionRing;
+
+        function initSelectionRing() {
+            const ringGeo = new THREE.RingGeometry(3, 3.3, 32);
+            const ringMat = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide, transparent: true, opacity: 0 });
+            selectionRing = new THREE.Mesh(ringGeo, ringMat);
+            scene.add(selectionRing);
+        }
+
         function selectStar(entry) {
+            selectedEntry = entry;
             const s = entry.data;
-            const panel = document.getElementById('detail-panel');
             
+            // 顯示圓圈
+            if(selectionRing) {
+                selectionRing.position.copy(entry.mesh.position);
+                selectionRing.lookAt(0,0,0);
+                selectionRing.material.opacity = 0.8;
+            }
+
+            // 填充資料面板
+            const panel = document.getElementById('detail-panel');
             document.getElementById('dp-name').textContent = s.name;
             document.getElementById('dp-type').textContent = (s.type || 'star').toUpperCase();
             document.getElementById('dp-ra').textContent = s.ra.toFixed(2);
@@ -467,7 +454,7 @@
             panel.classList.add('visible');
         }
 
-        // --- 初始化與渲染 ---
+        // --- 初始化與主迴圈 ---
         const earthGeo = new THREE.SphereGeometry(4, 32, 32);
         const earthMat = new THREE.MeshPhongMaterial({ color: 0x336699, emissive: 0x1a4488 });
         const earth = new THREE.Mesh(earthGeo, earthMat);
@@ -486,14 +473,49 @@
         });
 
         loadConstellationData();
+        buildGrid();
+        initSelectionRing();
 
         function animate() {
             requestAnimationFrame(animate);
             controls.update();
             earth.rotation.y += 0.001;
+            
+            if(selectedEntry) {
+                // 讓圓圈會呼吸
+                selectionRing.material.opacity = 0.5 + Math.sin(Date.now()*0.005)*0.3;
+                selectionRing.scale.setScalar(1 + Math.sin(Date.now()*0.005)*0.05);
+            }
             renderer.render(scene, camera);
         }
         animate();
+
+        // --- 點擊偵測 ---
+        window.addEventListener('click', (e) => {
+            const ndcX = (e.clientX / window.innerWidth) * 2 - 1;
+            const ndcY = -(e.clientY / window.innerHeight) * 2 + 1;
+            const clickPos = new THREE.Vector2(ndcX, ndcY);
+
+            let bestEntry = null;
+            let bestDist = Infinity;
+
+            starEntries.forEach(entry => {
+                const v = entry.mesh.position.clone().project(camera);
+                if(v.z > 1) return;
+                const screenDist = clickPos.distanceTo(new THREE.Vector2(v.x, v.y));
+                if(screenDist < bestDist) {
+                    bestDist = screenDist;
+                    bestEntry = entry;
+                }
+                // 閾值
+                if(bestDist < 0.05) break; 
+            });
+
+            if(bestEntry && bestDist < 0.06) {
+                if(bestEntry.ci !== activeCi) toggleConst(bestEntry.ci);
+                selectStar(bestEntry);
+            }
+        });
     </script>
 </body>
 </html>
