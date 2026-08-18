@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALL-SKY 88</title>
+    <style>
+        /* 這裡我補上基本的 CSS，確保你的 UI 元素能看得到 */
+        body { margin: 0; overflow: hidden; background: #000; color: white; font-family: sans-serif; }
+        #canvas-container { width: 100vw; height: 100vh; }
+        #ui-overlay { position: absolute; top: 20px; left: 20px; pointer-events: none; }
+        header h1 { margin: 0; font-size: 24px; }
+        #bottom-controls { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); width: 80%; pointer-events: auto; }
+        #const-menu { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
+        .const-btn { background: rgba(255,255,255,0.1); border: 1px solid #555; color: white; padding: 5px 10px; cursor: pointer; }
+        #sub-menu { background: rgba(0,0,0,0.7); padding: 10px; border-radius: 8px; margin-bottom: 10px; display: none; }
+        .star-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+        .star-btn { background: #444; border: none; color: white; padding: 3px 8px; cursor: pointer; font-size: 12px; }
+        #detail-panel { 
+            position: absolute; right: -350px; top: 0; width: 300px; height: 100%; 
+            background: rgba(0,0,0,0.8); transition: right 0.3s; padding: 20px; 
+            box-sizing: border-box; border-left: 1px solid #444;
+        }
+        #detail-panel.active { right: 0; }
+        .dp-drag-handle { width: 100%; height: 20px; cursor: move; background: #333; margin-bottom: 10px; }
+        #dp-close { position: absolute; top: 5px; right: 10px; background: none; border: none; color: white; font-size: 20px; cursor: pointer; }
+        .dp-divider { height: 1px; background: #444; margin: 10px 0; }
+        .dp-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        #star-label { position: absolute; pointer-events: none; display: none; color: white; text-shadow: 1px 1px 2px black; }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    
+    <div id="star-label"><div class="label-content"><div class="label-name" id="l-name"></div><div class="label-coords" id="l-coords"></div></div></div>
+    
+    <div id="detail-panel">
+        <div class="dp-drag-handle"></div><button id="dp-close">&times;</button>
+        <div id="dp-type" style="color: #aaa; font-size: 12px;"></div>
+        <div id="dp-name" style="font-size: 24px; font-weight: bold;"></div>
+        <div class="dp-divider"></div>
+        <div class="dp-row"><span>赤經 RA</span><span id="dp-ra"></span></div>
+        <div class="dp-row"><span>赤緯 Dec</span><span id="dp-dec"></span></div>
+        <div class="dp-row" id="dp-mag-row"><span>視星等</span><span id="dp-mag"></span></div>
+        <div id="dp-desc" style="margin-top: 15px; line-height: 1.6; font-size: 14px;"></div>
+    </div>
+
+    <div id="ui-overlay">
+        <header><h1>ALL-SKY 88</h1><p>全天 88 星座管理系統</p></header>
+        <div id="bottom-controls">
+            <div id="sub-menu"><div class="star-grid" id="star-btns"></div></div>
+            <div id="const-menu"></div>
+        </div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        let CONSTELLATIONS = [];
+        const starEntries = [];
+        const constGroups = [];
+        const sphereRadius = 150;
+
+        // --- 初始化 Three.js 環境 ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 2000);
+        camera.position.set(0, 2, 5); 
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+
+        // --- 修正 1: 補完星星貼圖生成函數 ---
+        function createStarTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 64;
+            canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+            const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+            grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+            grad.addColorStop(0.2, 'rgba(255, 255, 255, 0.8)');
+            grad.addColorStop(0.5, 'rgba(255, 255, 255, 0.2)');
+            grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, 64, 64);
+            return new THREE.CanvasTexture(canvas);
+        }
+        const starTex = createStarTexture();
+
+        function calculatePosition(ra, dec, radius) {
+            const phi = (90 - dec) * (Math.PI / 180);
+            const theta = (ra + 180) * (Math.PI / 180);
+            return new THREE.Vector3(radius * Math.sin(phi) * Math.cos(theta), radius * Math.cos(phi), radius * Math.sin(phi) * Math.sin(theta));
+        }
+
+        async function loadConstellationData() {
+            try {
+                const response = await fetch('./constellations.json');
+                if (!response.ok) throw new Error("JSON 檔案讀取失敗，請確認檔案路徑與格式");
+                CONSTELLATIONS = await response.json();
+                buildSkyMap();
+                buildUIButtons();
+            } catch (error) {
+                console.error("載入失敗:", error);
+                alert("載入 JSON 失敗！請檢查控制台(F12)或確認 JSON 是否有錯誤（如 223.aff 這種非數字字串）。");
+            }
+        }
+
+        function buildSkyMap() {
+            CONSTELLATIONS.forEach((con, ci) => {
+                const starMeshes = [];
+                
+                con.stars.forEach((s, si) => {
+                    const pos = calculatePosition(s.ra, s.dec, sphereRadius);
+                    
+                    // --- 修正 2: 處理星雲/星團沒有 mag 的問題 ---
+                    let size;
+                    if (s.type === 'nebula' || s.type === 'cluster') {
+                        size = 12; 
+                    } else {
+                        const mag = s.mag !== undefined ? s.mag : 3.0;
+                        size = Math.max(1.5, (5 - mag) * 1.5);
+                    }
+
+                    // --- 修正 3: 顏色解析安全化 ---
+                    const colorHex = parseInt(s.color.replace('0x', ''), 16);
+                    
+                    const mat = new THREE.SpriteMaterial({ 
+                        map: starTex, 
+                        color: colorHex, 
+                        transparent: true, 
+                        blending: THREE.AdditiveBlending 
+                    });
+                    const obj = new THREE.Sprite(mat);
+                    obj.position.copy(pos);
+                    obj.scale.set(size, size, 1);
+                    scene.add(obj);
+                    
+                    const entry = { mesh: obj, data: s, ci, si };
+                    starEntries.push(entry);
+                    starMeshes.push(entry);
+                });
+
+                const linePoints = [];
+                con.lines.forEach(([a, b]) => {
+                    if(starMeshes[a] && starMeshes[b]) {
+                        linePoints.push(starMeshes[a].mesh.position.clone(), starMeshes[b].mesh.position.clone());
+                    }
+                });
+                
+                if (linePoints.length > 0) {
+                    const lineGeo = new THREE.BufferGeometry().setFromPoints(linePoints);
+                    const lineMat = new THREE.LineBasicMaterial({ color: 0x7aa2f7, transparent: true, opacity: 0 });
+                    const lineObj = new THREE.LineSegments(lineGeo, lineMat);
+                    scene.add(lineObj);
+                    constGroups.push(lineObj);
+                } else {
+                    constGroups.push({ material: { opacity: 0 } });
+                }
+            });
+        }
+
+        function buildUIButtons() {
+            const constMenu = document.getElementById('const-menu');
+            CONSTELLATIONS.forEach((con, ci) => {
+                const btn = document.createElement('button');
+                btn.className = 'const-btn';
+                btn.textContent = con.name;
+                btn.onclick = () => toggleConst(ci);
+                constMenu.appendChild(btn);
+            });
+        }
+
+        let activeCi = -1;
+        function toggleConst(ci) {
+            const subMenu = document.getElementById('sub-menu');
+            const starBtnsContainer = document.getElementById('star-btns');
+
+            if(activeCi === ci) {
+                activeCi = -1;
+                constGroups.forEach(g => { if(g.material) g.material.opacity = 0; });
+                subMenu.style.display = 'none';
+                return;
+            }
+            
+            activeCi = ci;
+            constGroups.forEach((g, i) => {
+                if(g.material) g.material.opacity = (i === ci ? 0.6 : 0);
+            });
+
+            // --- 修正 4: 補完子選單星星按鈕生成邏輯 ---
+            subMenu.style.display = 'block';
+            starBtnsContainer.innerHTML = '';
+            CONSTELLATIONS[ci].stars.forEach((s) => {
+                const btn = document.createElement('button');
+                btn.className = 'star-btn';
+                btn.textContent = s.name;
+                btn.onclick = () => showDetail(s);
+                starBtnsContainer.appendChild(btn);
+            });
+        }
+
+        // --- 修正 5: 實作 Detail Panel 內容填充 ---
+        function showDetail(s) {
+            document.getElementById('dp-name').textContent = s.name;
+            document.getElementById('dp-type').textContent = (s.type || 'star').toUpperCase();
+            document.getElementById('dp-ra').textContent = s.ra.toFixed(2);
+            document.getElementById('dp-dec').textContent = s.dec.toFixed(2);
+            
+            const magRow = document.getElementById('dp-mag-row');
+            if (s.mag !== undefined) {
+                magRow.style.display = 'flex';
+                document.getElementById('dp-mag').textContent = s.mag;
+            } else {
+                magRow.style.display = 'none';
+            }
+            
+            document.getElementById('dp-desc').textContent = s.desc || '';
+            document.getElementById('detail-panel').classList.add('active');
+        }
+
+        // 關閉面板
+        document.getElementById('dp-close').onclick = () => {
+            document.getElementById('detail-panel').classList.remove('active');
+        };
+
+        // --- 修正 6: 視窗縮放處理 ---
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        loadConstellationData();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+</html>
