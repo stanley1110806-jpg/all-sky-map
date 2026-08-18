@@ -1,0 +1,766 @@
+[
+  {
+    "id": "ursa_minor",
+    "name": "小熊座",
+    "nameEn": "Ursa Minor",
+    "stars": [
+      {"name": "北極星 (Polaris)", "ra": 37.9, "dec": 89.3, "type": "star", "mag": 1.97, "color": "0xfff4ea", "desc": "勾陳一。當前的北極星，幾乎正對著地球的地軸北極。"},
+      {"name": "帝 (Kochab)", "ra": 222.1, "dec": 74.2, "type": "star", "mag": 2.07, "color": "0xffcc88", "desc": "北極二。橘色巨星，古代的北極星之一。"},
+      {"name": "太子 (Pherkad)", "ra": 230.1, "dec": 71.8, "type": "star", "mag": 3.0, "color": "0xd0e0ff", "desc": "北極三。"}
+    ],
+    "lines": [[0, 1], [1, 2]]
+  },
+  {
+    "id": "ursa_major",
+    "name": "大熊座",
+    "nameEn": "Ursa Major",
+    "stars": [
+      {"name": "樞 (Dubhe)", "ra": 165.9, "dec": 61.7, "type": "star", "mag": 1.79, "color": "0xffcc88", "desc": "天樞。北斗七星勺口第一星，與天璇連線延長五倍可找北極星。"},
+      {"name": "璇 (Merak)", "ra": 165.4, "dec": 56.4, "type": "star", "mag": 2.34, "color": "0xd0e0ff", "desc": "天璇。北斗二。"},
+      {"name": "機 (Phecda)", "ra": 178.4, "dec": 53.7, "type": "star", "mag": 2.41, "color": "0xd0e0ff", "desc": "天機。北斗三。"},
+      {"name": "權 (Megrez)", "ra": 183.8, "dec": 57.0, "type": "star", "mag": 3.32, "color": "0xd0e0ff", "desc": "天權。北斗四，七星中最暗的一顆。"},
+      {"name": "玉衡 (Alioth)", "ra": 193.5, "dec": 55.9, "type": "star", "mag": 1.76, "color": "0xd0e0ff", "desc": "玉衡。北斗五，大熊座最亮的恆星。"},
+      {"name": "開陽 (Mizar)", "ra": 200.9, "dec": 54.9, "type": "star", "mag": 2.23, "color": "0xd0e0ff", "desc": "開陽。北斗六，肉眼可辨的著名雙星（伴星為輔）。"},
+      {"name": "搖光 (Alkaid)", "ra": 206.9, "dec": 49.3, "type": "star", "mag": 1.85, "color": "0xd0e0ff", "desc": "搖光。北斗七，位於勺柄末端。"}
+    ],
+    "lines": [[0, 1], [1, 2], [2, 3], [3, 0], [3, 4], [4, 5], [5, 6]]
+  },
+  {
+    "id": "cassiopeia",
+    "name": "仙后座",
+    "nameEn": "Cassiopeia",
+    "stars": [
+      {"name": "王良一 (Caph)", "ra": 2.3, "dec": 59.1, "type": "star", "mag": 2.28, "color": "0xfff4ea", "desc": "仙后座β，秋季星空代表性的 W 字型右端星。"},
+      {"name": "王良四 (Schedar)", "ra": 10.1, "dec": 56.5, "type": "star", "mag": 2.24, "color": "0xffcc88", "desc": "仙后座α，是一顆橙色巨星。"},
+      {"name": "策 (Tsih)", "ra": 14.2, "dec": 60.7, "type": "star", "mag": 2.15, "color": "0xd0e0ff", "desc": "仙后座γ，W 字型中心點，不穩定的爆發型變星。"},
+      {"name": "閣道三 (Ruchbah)", "ra": 21.1, "dec": 60.2, "type": "star", "mag": 2.66, "color": "0xd0e0ff", "desc": "仙后座δ。"},
+      {"name": "閣道二 (Segin)", "ra": 28.6, "dec": 63.6, "type": "star", "mag": 3.35, "color": "0xd0e0ff", "desc": "仙后座ε，W 字型左端星。"}
+    ],
+    "lines": [[0, 1], [1, 2], [2, 3], [3, 4]]
+  },
+  {
+    "id": "cepheus",
+    "name": "仙王座",
+    "nameEn": "Cepheus",
+    "stars": [
+      {"name": "天鉤五 (Alderamin)", "ra": 319.6, "dec": 62.6, "type": "star", "mag": 2.45, "color": "0xffffff", "desc": "仙王座最亮星，自轉極快。"},
+      {"name": "造父四 (Garnet Star)", "ra": 326.4, "dec": 58.8, "type": "star", "mag": 4.08, "color": "0xff2211", "desc": "石榴星。極度巨大的紅色超巨星，赫歇爾曾讚嘆其美麗色澤。"},
+      {"name": "造父一 (δ Cephei)", "ra": 337.0, "dec": 58.4, "type": "star", "mag": 4.07, "color": "0xfff4ea", "desc": "造父變星的原型。這類恆星的亮度脈動周期與絕對星等有直接關係，是天文學測量星系距離的重要「標準燭光」。"}
+    ],
+    "lines": [[0, 1], [1, 2]]
+  },
+  {
+    "id": "andromeda",
+    "name": "仙女座",
+    "nameEn": "Andromeda",
+    "stars": [
+      {"name": "壁宿二 (Alpheratz)", "ra": 2.1, "dec": 29.1, "type": "star", "mag": 2.06, "color": "0xd0e0ff", "desc": "仙女座最亮星，同時也是「飛馬座四邊形」的其中一個頂點。"},
+      {"name": "奎宿九 (Mirach)", "ra": 17.4, "dec": 35.6, "type": "star", "mag": 2.07, "color": "0xffcc88", "desc": "紅巨星，常用作尋找仙女座大星系的起點。"},
+      {"name": "天大將軍一 (Almach)", "ra": 30.2, "dec": 42.3, "type": "star", "mag": 2.1, "color": "0xffcc44", "desc": "美麗的小型雙星系統，望遠鏡下呈現鮮明的橙藍對比。"},
+      {"name": "M31 仙女座大星系", "ra": 10.7, "dec": 41.3, "type": "nebula", "color": "0xccccff", "desc": "本星系群中最大的星系，距地球約 250 萬光年，肉眼隱約可見。"}
+    ],
+    "lines": [[0, 1], [1, 2]]
+  },
+  {
+    "id": "perseus",
+    "name": "英仙座",
+    "nameEn": "Perseus",
+    "stars": [
+      {"name": "天船三 (Mirfak)", "ra": 51.1, "dec": 49.9, "type": "star", "mag": 1.79, "color": "0xfff4ea", "desc": "英仙座最亮星，黃白色超巨星。"},
+      {"name": "大陵五 (Algol)", "ra": 47.0, "dec": 40.9, "type": "star", "mag": 2.12, "color": "0xd0e0ff", "desc": "著名的食雙星，古人稱為「惡魔之星」，亮度每隔 2.87 天會規律變暗。"},
+      {"name": "英仙座雙星團 (NGC 869/884)", "ra": 35.1, "dec": 57.1, "type": "cluster", "color": "0xffffff", "desc": "兩個相鄰極近的年輕疏散星團，望遠鏡下繁星密佈。"}
+    ],
+    "lines": [[0, 1]]
+  },
+  {
+    "id": "auriga",
+    "name": "御夫座",
+    "nameEn": "Auriga",
+    "stars": [
+      {"name": "五車二 (Capella)", "ra": 79.2, "dec": 46.0, "type": "star", "mag": 0.08, "color": "0xfff4ea", "desc": "全天第六亮星，是一個由兩對雙星組成的四合星系統。"},
+      {"name": "五車三 (Menkalinan)", "ra": 89.9, "dec": 44.9, "type": "star", "mag": 1.9, "color": "0xd0e0ff", "desc": "次巨星。"}
+    ],
+    "lines": [[0, 1]]
+  },
+  {
+    "id": "bootes",
+    "name": "牧夫座",
+    "nameEn": "Boötes",
+    "stars": [
+      {"name": "大角星 (Arcturus)", "ra": 213.9, "dec": 19.2, "type": "star", "mag": -0.05, "color": "0xffaa66", "desc": "北半球夜空最亮的恆星，橙色巨星，春季大曲線的終點。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "lyra",
+    "name": "天琴座",
+    "nameEn": "Lyra",
+    "stars": [
+      {"name": "織女星 (Vega)", "ra": 279.2, "dec": 38.8, "type": "star", "mag": 0.03, "color": "0xd0e0ff", "desc": "藍白色的夜空名星，夏季大三角的重要頂點。"},
+      {"name": "漸台二 (Sheliak)", "ra": 282.5, "dec": 33.4, "type": "star", "mag": 3.45, "color": "0xfff4ea", "desc": "天琴座β，變星。"},
+      {"name": "漸台三 (Sulafat)", "ra": 285.4, "dec": 32.7, "type": "star", "mag": 3.25, "color": "0xffffff", "desc": "天琴座γ，B型巨星。"},
+      {"name": "M57 環狀星雲", "ra": 283.4, "dec": 33.0, "type": "nebula", "color": "0xff55aa", "desc": "經典的行星狀星雲，宛如宇宙中的一枚戒指。"}
+    ],
+    "lines": [[0, 1], [1, 2], [2, 0]]
+  },
+  {
+    "id": "cygnus",
+    "name": "天鵝座",
+    "nameEn": "Cygnus",
+    "stars": [
+      {"name": "天津四 (Deneb)", "ra": 310.4, "dec": 45.3, "type": "star", "mag": 1.25, "color": "0xffffff", "desc": "遙遠而巨大的遠古白超巨星，夏季大三角頂點之一。"},
+      {"name": "天津一 (Sadr)", "ra": 305.6, "dec": 40.3, "type": "star", "mag": 2.20, "color": "0xfff4ea", "desc": "北十字中心星。"},
+      {"name": "輦道增七 (Albireo)", "ra": 290.2, "dec": 28.0, "type": "star", "mag": 3.05, "color": "0xffcc44", "desc": "全天最美麗的彩色雙星，望遠鏡下呈現琥珀金與藍寶石色澤。"}
+    ],
+    "lines": [[0, 1], [1, 2]]
+  },
+  {
+    "id": "aquila",
+    "name": "天鷹座",
+    "nameEn": "Aquila",
+    "stars": [
+      {"name": "河鼓二 (Altair)", "ra": 297.7, "dec": 8.9, "type": "star", "mag": 0.77, "color": "0xffffff", "desc": "牛郎星。自轉極快，赤道因離心力明顯向外鼓起。"},
+      {"name": "河鼓一 (Tarazed)", "ra": 296.6, "dec": 10.6, "type": "star", "mag": 2.72, "color": "0xffcc88", "desc": "牛郎星旁的陪伴亮星。"}
+    ],
+    "lines": [[0, 1]]
+  },
+  {
+    "id": "hercules",
+    "name": "武仙座",
+    "nameEn": "Hercules",
+    "stars": [
+      {"name": "帝座 (Rasalgethi)", "ra": 257.2, "dec": 14.4, "type": "star", "mag": 3.31, "color": "0xff5522", "desc": "美麗的紅超巨星雙星系統。"},
+      {"name": "M13 武仙座球狀星團", "ra": 250.4, "dec": 36.5, "type": "cluster", "color": "0xffffdd", "desc": "北半球最宏偉的球狀星團，包含數十萬顆古老的恆星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "ophiuchus",
+    "name": "蛇夫座",
+    "nameEn": "Ophiuchus",
+    "stars": [
+      {"name": "候 (Rasalhague)", "ra": 262.3, "dec": 12.5, "type": "star", "mag": 2.08, "color": "0xd0e0ff", "desc": "蛇夫座主星。"},
+      {"name": "巴納德星", "ra": 269.4, "dec": 4.7, "type": "star", "mag": 9.5, "color": "0xff3300", "desc": "全天自行速度（夜空位置移動速度）最快的恆星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "serpens",
+    "name": "巨蛇座",
+    "nameEn": "Serpens",
+    "stars": [
+      {"name": "天市右垣七 (Unukalhai)", "ra": 235.1, "dec": 6.4, "type": "star", "mag": 2.63, "color": "0xffaa44", "desc": "意為蛇的心臟。"},
+      {"name": "老鷹星雲 (M16)", "ra": 274.7, "dec": -13.8, "type": "nebula", "color": "0xff5555", "desc": "哈伯望遠鏡著名照片「創生柱」的所在地。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "pegasus",
+    "name": "飛馬座",
+    "nameEn": "Pegasus",
+    "stars": [
+      {"name": "室宿一 (Markab)", "ra": 345.9, "dec": 15.2, "type": "star", "mag": 2.49, "color": "0xd0e0ff", "desc": "飛馬座四邊形右下角星。"},
+      {"name": "室宿二 (Scheat)", "ra": 346.2, "dec": 28.1, "type": "star", "mag": 2.44, "color": "0xffaa66", "desc": "飛馬座四邊形右上角紅巨星。"},
+      {"name": "壁宿一 (Algenib)", "ra": 2.2, "dec": 15.2, "type": "star", "mag": 2.83, "color": "0xd0e0ff", "desc": "飛馬座四邊形左下角星。"},
+      {"name": "危宿三 (Enif)", "ra": 328.5, "dec": 9.9, "type": "star", "mag": 2.38, "color": "0xffbb55", "desc": "飛馬座最亮的恆星，代表馬的鼻子。"}
+    ],
+    "lines": [[0, 1], [0, 2]]
+  },
+  {
+    "id": "draco",
+    "name": "天龍座",
+    "nameEn": "Draco",
+    "stars": [
+      {"name": "右樞 (Thuban)", "ra": 211.7, "dec": 64.4, "type": "star", "mag": 3.67, "color": "0xffffff", "desc": "西元前 3000 年左右古埃及建造金字塔時的北極星。"},
+      {"name": "貓眼星雲 (NGC 6543)", "ra": 269.6, "dec": 66.6, "type": "nebula", "color": "0x33ffff", "desc": "結構極為複雜的著名行星狀星雲。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "canes_venatici",
+    "name": "獵犬座",
+    "nameEn": "Canes Venatici",
+    "stars": [
+      {"name": "常陳一 (Cor Caroli)", "ra": 194.0, "dec": 38.3, "type": "star", "mag": 2.89, "color": "0xffffff", "desc": "意為「查理之心」，是一顆高磁場的磁星雙星。"},
+      {"name": "渦狀星系 (M51)", "ra": 202.5, "dec": 47.2, "type": "nebula", "color": "0xaabbff", "desc": "經典的雙螺旋臂大星系，正在吞噬旁邊的小星系。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "coma_berenices",
+    "name": "后髮座",
+    "nameEn": "Coma Berenices",
+    "stars": [
+      {"name": "周鼎一 (Diadem)", "ra": 197.8, "dec": 17.5, "type": "star", "mag": 4.32, "color": "0xffffff", "desc": "意為「王冠」，是一對互相繞行的聯星。"},
+      {"name": "黑眼星系 (M64)", "ra": 194.2, "dec": 21.7, "type": "nebula", "color": "0xaaaaaa", "desc": "因星系核心有一條巨大的黑暗塵埃帶而得名。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "corona_borealis",
+    "name": "北冕座",
+    "nameEn": "Corona Borealis",
+    "stars": [
+      {"name": "貫索四 (Alphecca)", "ra": 233.7, "dec": 26.7, "type": "star", "mag": 2.22, "color": "0xd0e0ff", "desc": "北冕座半環狀星冠中最璀璨的中央明珠。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "leo_minor",
+    "name": "小獅座",
+    "nameEn": "Leo Minor",
+    "stars": [
+      {"name": "勢四 (Praecipua)", "ra": 151.8, "dec": 34.3, "type": "star", "mag": 3.79, "color": "0xffaa44", "desc": "小獅座內最亮的恆星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "lynx",
+    "name": "天貓座",
+    "nameEn": "Lynx",
+    "stars": [
+      {"name": "軒轅四 (α Lyncis)", "ra": 141.2, "dec": 34.4, "type": "star", "mag": 3.13, "color": "0xffaa44", "desc": "天貓座唯一有希臘字母標註的星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "camelopardalis",
+    "name": "鹿豹座",
+    "nameEn": "Camelopardalis",
+    "stars": [
+      {"name": "鹿豹座β", "ra": 75.3, "dec": 60.4, "type": "star", "mag": 4.03, "color": "0xffffaa", "desc": "北天大型暗星座鹿豹座的主星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "canis_minor",
+    "name": "小犬座",
+    "nameEn": "Canis Minor",
+    "stars": [
+      {"name": "南河三 (Procyon)", "ra": 114.8, "dec": 5.2, "type": "star", "mag": 0.34, "color": "0xfff4ea", "desc": "全天第八亮星，冬季大三角的成員之一，附帶一顆白矮星伴星。"},
+      {"name": "南河二 (Gomeisa)", "ra": 111.0, "dec": 8.3, "type": "star", "mag": 2.89, "color": "0xd0e0ff", "desc": "快速自轉的 B 型星。"}
+    ],
+    "lines": [[0, 1]]
+  },
+  {
+    "id": "lacerta",
+    "name": "蠍虎座",
+    "nameEn": "Lacerta",
+    "stars": [
+      {"name": "蠍虎座α", "ra": 337.8, "dec": 50.3, "type": "star", "mag": 3.76, "color": "0xffffff", "desc": "位於銀河邊緣的小型暗星座主星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "delphinus",
+    "name": "海豚座",
+    "nameEn": "Delphinus",
+    "stars": [
+      {"name": "瓠瓜一 (Sualocin)", "ra": 309.9, "dec": 15.9, "type": "star", "mag": 3.77, "color": "0xd0e0ff", "desc": "英文名字是天文學家 Nicolaus 的倒寫。"},
+      {"name": "瓠瓜二 (Rotanev)", "ra": 310.8, "dec": 14.6, "type": "star", "mag": 3.63, "color": "0xd0e0ff", "desc": "英文名字是 Venator 的倒寫。"}
+    ],
+    "lines": [[0, 1]]
+  },
+  {
+    "id": "equuleus",
+    "name": "小馬座",
+    "nameEn": "Equuleus",
+    "stars": [
+      {"name": "虛宿二 (Kitalpha)", "ra": 318.9, "dec": 5.2, "type": "star", "mag": 3.92, "color": "0xfff4ea", "desc": "全天面積第二小的星座的主星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "sagitta",
+    "name": "天箭座",
+    "nameEn": "Sagitta",
+    "stars": [
+      {"name": "左旗一 (α Sagittae)", "ra": 297.4, "dec": 18.1, "type": "star", "mag": 4.39, "color": "0xffffaa", "desc": "亮黃色亮巨星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "vulpecula",
+    "name": "狐狸座",
+    "nameEn": "Vulpecula",
+    "stars": [
+      {"name": "啞鈴星雲 (M27)", "ra": 299.9, "dec": 22.7, "type": "nebula", "color": "0x33ffaa", "desc": "人類發現的第一個行星狀星雲，外觀如一對啞鈴。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "aries",
+    "name": "白羊座",
+    "nameEn": "Aries",
+    "stars": [
+      {"name": "婁宿三 (Hamal)", "ra": 31.6, "dec": 23.5, "type": "star", "mag": 2.01, "color": "0xffaa66", "desc": "白羊座最亮星，橙色巨星。"},
+      {"name": "婁宿二 (Sheratan)", "ra": 28.6, "dec": 20.8, "type": "star", "mag": 2.64, "color": "0xffffff", "desc": "光譜雙星。"}
+    ],
+    "lines": [[0, 1]]
+  },
+  {
+    "id": "taurus",
+    "name": "金牛座",
+    "nameEn": "Taurus",
+    "stars": [
+      {"name": "畢宿五 (Aldebaran)", "ra": 68.9, "dec": 16.5, "type": "star", "mag": 0.85, "color": "0xff7744", "desc": "紅色巨星，金牛的眼睛，冬季六邊形之一。"},
+      {"name": "五車五 (Elnath)", "ra": 81.6, "dec": 28.6, "type": "star", "mag": 1.65, "color": "0xd0e0ff", "desc": "金牛座的牛角尖，與御夫座共用。"},
+      {"name": "昴宿星團 (M45)", "ra": 56.8, "dec": 24.1, "type": "cluster", "color": "0x88ccff", "desc": "七姊妹星團。夜空最璀璨的藍色年輕疏散星團。"}
+    ],
+    "lines": [[0, 1]]
+  },
+  {
+    "id": "gemini",
+    "name": "雙子座",
+    "nameEn": "Gemini",
+    "stars": [
+      {"name": "北河三 (Pollux)", "ra": 116.3, "dec": 28.0, "type": "star", "mag": 1.14, "color": "0xffaa55", "desc": "雙子座弟弟，橙色巨星，已發現有行星環繞。"},
+      {"name": "北河二 (Castor)", "ra": 113.6, "dec": 31.9, "type": "star", "mag": 1.58, "color": "0xffffff", "desc": "雙子座哥哥，在望遠鏡下是一組複雜的六合星系統。"},
+      {"name": "井宿三 (Alhena)", "ra": 99.4, "dec": 16.4, "type": "star", "mag": 1.93, "color": "0xd0e0ff", "desc": "雙子的腳部。"}
+    ],
+    "lines": [[0, 1], [1, 2]]
+  },
+  {
+    "id": "cancer",
+    "name": "巨蟹座",
+    "nameEn": "Cancer",
+    "stars": [
+      {"name": "鬼宿四 (Asellus Australis)", "ra": 131.1, "dec": 18.2, "type": "star", "mag": 3.94, "color": "0xfff4ea", "desc": "巨蟹座中心亮星。"},
+      {"name": "蜂巢星團 (M44)", "ra": 130.1, "dec": 19.7, "type": "cluster", "color": "0xffffaa", "desc": "鬼宿星團。肉眼可見的朦朧星雲狀星團。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "leo",
+    "name": "獅子座",
+    "nameEn": "Leo",
+    "stars": [
+      {"name": "軒轅十四 (Regulus)", "ra": 152.1, "dec": 11.9, "type": "star", "mag": 1.35, "color": "0xd0e0ff", "desc": "獅子之心。位於黃道上的藍白主序星。"},
+      {"name": "五帝座一 (Denebola)", "ra": 177.3, "dec": 14.6, "type": "star", "mag": 2.14, "color": "0xffffff", "desc": "獅子的尾巴，春季大三角頂點之一。"},
+      {"name": "軒轅十二 (Algieba)", "ra": 154.9, "dec": 19.8, "type": "star", "mag": 2.01, "color": "0xffcc44", "desc": "獅子鐮刀結構上的美麗金黃雙星。"}
+    ],
+    "lines": [[0, 2], [2, 1]]
+  },
+  {
+    "id": "virgo",
+    "name": "室女座",
+    "nameEn": "Virgo",
+    "stars": [
+      {"name": "角宿一 (Spica)", "ra": 201.3, "dec": -11.2, "type": "star", "mag": 0.98, "color": "0xd0e0ff", "desc": "純淨的藍白巨星，春季大三角頂點之一。"},
+      {"name": "M87 巨大橢圓星系", "ra": 187.7, "dec": 12.4, "type": "nebula", "color": "0xffffff", "desc": "人類拍攝到歷史上第一張黑洞照片的核心星系。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "libra",
+    "name": "天秤座",
+    "nameEn": "Libra",
+    "stars": [
+      {"name": "氐宿一 (Zubenelgenubi)", "ra": 223.aff, "dec": -16.0, "type": "star", "mag": 2.75, "color": "0xffffff", "desc": "意為「南邊的螯」，肉眼可分開的雙星。"},
+      {"name": "氐宿四 (Zubeneschamali)", "ra": 229.2, "dec": -9.4, "type": "star", "mag": 2.61, "color": "0xccffcc", "desc": "全天極少數肉眼能看出帶有微綠色調的奇特恆星。"}
+    ],
+    "lines": [[0, 1]]
+  },
+  {
+    "id": "scorpius",
+    "name": "天蠍座",
+    "nameEn": "Scorpius",
+    "stars": [
+      {"name": "心宿二 (Antares)", "ra": 247.4, "dec": -26.4, "type": "star", "mag": 1.05, "color": "0xff4411", "desc": "天蠍之心。火紅的超巨星，與火星爭紅。"},
+      {"name": "尾宿八 (Shaula)", "ra": 263.4, "dec": -37.1, "type": "star", "mag": 1.62, "color": "0xd0e0ff", "desc": "蠍子毒針末端的亮星。"},
+      {"name": "M6 蝴蝶星團", "ra": 265.1, "dec": -32.2, "type": "cluster", "color": "0xffffff", "desc": "疏散星團，形狀酷似展翅的蝴蝶。"}
+    ],
+    "lines": [[0, 1]]
+  },
+  {
+    "id": "sagittarius",
+    "name": "人馬座",
+    "nameEn": "Sagittarius",
+    "stars": [
+      {"name": "箕宿三 (Kaus Australis)", "ra": 276.1, "dec": -34.4, "type": "star", "mag": 1.79, "color": "0xd0e0ff", "desc": "人馬座最亮星，組成「南斗六星」的一部分。"},
+      {"name": "人馬座A* (銀河系中心)", "ra": 266.4, "dec": -29.0, "type": "nebula", "color": "0xff33aa", "desc": "地球所屬銀河系核心的超大質量黑洞所在地。"},
+      {"name": "礁湖星雲 (M8)", "ra": 270.9, "dec": -24.4, "type": "nebula", "color": "0xff4488", "desc": "銀河繁星間極為宏偉著名的發射星雲。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "capricornus",
+    "name": "摩羯座",
+    "nameEn": "Capricornus",
+    "stars": [
+      {"name": "壘壁陣四 (Deneb Algedi)", "ra": 326.7, "dec": -16.1, "type": "star", "mag": 2.85, "color": "0xffffff", "desc": "摩羯座的山羊尾巴星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "aquarius",
+    "name": "寶瓶座",
+    "nameEn": "Aquarius",
+    "stars": [
+      {"name": "危宿一 (Sadalsuud)", "ra": 323.4, "dec": -5.6, "type": "star", "mag": 2.90, "color": "0xfff4ea", "desc": "黃色超巨星。"},
+      {"name": "上帝之眼 (NGC 7293)", "ra": 337.4, "dec": -20.8, "type": "nebula", "color": "0x33ffcc", "desc": "螺旋星雲。距離最近的行星狀星雲，極像一隻深邃的宇宙之眼。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "pisces",
+    "name": "雙魚座",
+    "nameEn": "Pisces",
+    "stars": [
+      {"name": "外屏七 (Alrescha)", "ra": 30.0, "dec": 2.8, "type": "star", "mag": 3.82, "color": "0xffffff", "desc": "意為「繩索」，是兩條魚結紮在一起的交點位置。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "orion",
+    "name": "獵戶座",
+    "nameEn": "Orion",
+    "stars": [
+      {"name": "參宿四 (Betelgeuse)", "ra": 88.8, "dec": 7.4, "type": "star", "mag": 0.42, "color": "0xff4422", "desc": "紅色超巨星，已到生命末期，可能在不久的將來發生超新星爆炸。"},
+      {"name": "參宿七 (Rigel)", "ra": 78.6, "dec": -8.2, "type": "star", "mag": 0.18, "color": "0xd0e0ff", "desc": "藍白超巨星，全天極耀眼的恆星。"},
+      {"name": "參宿二 (Alnilam)", "ra": 84.0, "dec": -1.2, "type": "star", "mag": 1.69, "color": "0xd0e0ff", "desc": "獵戶座正中央腰帶三星的主星。"},
+      {"name": "M42 獵戶座大星雲", "ra": 83.8, "dec": -5.4, "type": "nebula", "color": "0xff66bb", "desc": "肉眼可見的巨大宇宙育嬰室，大量新恆星在此誕生。"}
+    ],
+    "lines": [[0, 2], [2, 1]]
+  },
+  {
+    "id": "canis_major",
+    "name": "大犬座",
+    "nameEn": "Canis Major",
+    "stars": [
+      {"name": "天狼星 (Sirius)", "ra": 101.3, "dec": -16.7, "type": "star", "mag": -1.46, "color": "0xffffff", "desc": "夜空中最亮的恆星，散發無與倫比的白光，距太陽系僅 8.6 光年。"},
+      {"name": "弧矢七 (Adhara)", "ra": 104.7, "dec": -28.9, "type": "star", "mag": 1.50, "color": "0xd0e0ff", "desc": "全天夜空中最強烈的紫外線輻射源。"}
+    ],
+    "lines": [[0, 1]]
+  },
+  {
+    "id": "carina",
+    "name": "船底座",
+    "nameEn": "Carina",
+    "stars": [
+      {"name": "老人星 (Canopus)", "ra": 95.9, "dec": -52.7, "type": "star", "mag": -0.74, "color": "0xffffff", "desc": "全夜空第二亮星，南半球航海導航的耀眼地標。"},
+      {"name": "海山二 (Eta Carinae)", "ra": 161.2, "dec": -59.7, "type": "nebula", "color": "0xff3333", "desc": "極不穩定的超大質量高光度藍變星，周圍環繞著侏儒星雲。"}
+    ],
+    "lines": [[0, 1]]
+  },
+  {
+    "id": "centaurus",
+    "name": "半人馬座",
+    "nameEn": "Centaurus",
+    "stars": [
+      {"name": "南門二 (Rigil Kent)", "ra": 219.9, "dec": -60.8, "type": "star", "mag": -0.27, "color": "0xffcc44", "desc": "全天第三亮星，是包含比鄰星在內、距離我們最近的三合星系統。"},
+      {"name": "馬腹一 (Hadar)", "ra": 210.9, "dec": -60.4, "type": "star", "mag": 0.61, "color": "0xd0e0ff", "desc": "藍巨星。"},
+      {"name": "歐米茄半人馬座球狀星團", "ra": 201.7, "dec": -47.5, "type": "cluster", "color": "0xffffff", "desc": "NGC 5139。銀河系內最巨大、最明亮的超級球狀星團。"}
+    ],
+    "lines": [[0, 1]]
+  },
+  {
+    "id": "crux",
+    "name": "南十字座",
+    "nameEn": "Crux",
+    "stars": [
+      {"name": "十字架二 (Acrux)", "ra": 186.6, "dec": -63.1, "type": "star", "mag": 0.77, "color": "0xd0e0ff", "desc": "南十字座最亮星，多用於尋找地理南極點。"},
+      {"name": "十字架一 (Gacrux)", "ra": 187.8, "dec": -57.1, "type": "star", "mag": 1.59, "color": "0xff5533", "desc": "南十字頂端的迷人紅巨星。"},
+      {"name": "煤袋星雲", "ra": 192.0, "dec": -62.5, "type": "nebula", "color": "0x111111", "desc": "銀河襯托下極為醒目的巨大黑暗吸收星雲。"}
+    ],
+    "lines": [[0, 1]]
+  },
+  {
+    "id": "eridanus",
+    "name": "波江座",
+    "nameEn": "Eridanus",
+    "stars": [
+      {"name": "水委一 (Achernar)", "ra": 24.4, "dec": -57.2, "type": "star", "mag": 0.45, "color": "0xd0e0ff", "desc": "長長天河波江座的終點星，全天高速度自轉最扁的恆星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "columba",
+    "name": "天鴿座",
+    "nameEn": "Columba",
+    "stars": [
+      {"name": "丈人一 (Phact)", "ra": 89.9, "dec": -34.1, "type": "star", "mag": 2.65, "color": "0xd0e0ff", "desc": "天鴿座亮星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "piscis_austrinus",
+    "name": "南魚座",
+    "nameEn": "Piscis Austrinus",
+    "stars": [
+      {"name": "北落師門 (Fomalhaut)", "ra": 344.4, "dec": -29.6, "type": "star", "mag": 1.16, "color": "0xffffff", "desc": "秋季南夜空孤獨亮麗的「秋季獨星」，周圍擁有巨大的行星塵埃盤。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "pavo",
+    "name": "孔雀座",
+    "nameEn": "Pavo",
+    "stars": [
+      {"name": "孔雀十一 (Peacock)", "ra": 303.6, "dec": -56.7, "type": "star", "mag": 1.94, "color": "0xd0e0ff", "desc": "南天璀璨的藍色次巨星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "grus",
+    "name": "天鶴座",
+    "nameEn": "Grus",
+    "stars": [
+      {"name": "鶴一 (Alnair)", "ra": 332.1, "dec": -46.9, "type": "star", "mag": 1.73, "color": "0xd0e0ff", "desc": "天鶴座主星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "puppis",
+    "name": "船尾座",
+    "nameEn": "Puppis",
+    "stars": [
+      {"name": "弧矢增二十二 (Naos)", "ra": 120.9, "dec": -40.0, "type": "star", "mag": 2.21, "color": "0x99bbff", "desc": "極度熾熱、全天已知光度極高的罕見 O 型超巨星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "vela",
+    "name": "船帆座",
+    "nameEn": "Vela",
+    "stars": [
+      {"name": "天社三 (Suhail)", "ra": 137.2, "dec": -43.4, "type": "star", "mag": 2.23, "color": "0xffaa44", "desc": "偽十字星群的組成星之一。"},
+      {"name": "船帆座超新星殘骸", "ra": 133.6, "dec": -45.2, "type": "nebula", "color": "0x33aaff", "desc": "約一萬年前恆星爆炸留下的巨大擴散網狀氣體。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "fornax",
+    "name": "天爐座",
+    "nameEn": "Fornax",
+    "stars": [
+      {"name": "天爐座α (Dalim)", "ra": 49.3, "dec": -28.9, "type": "star", "mag": 3.85, "color": "0xfff4ea", "desc": "天爐座聯星系統。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "cetus",
+    "name": "鯨魚座",
+    "nameEn": "Cetus",
+    "stars": [
+      {"name": "土司空 (Diphda)", "ra": 10.4, "dec": -18.0, "type": "star", "mag": 2.04, "color": "0xffcc55", "desc": "鯨魚座最亮星。"},
+      {"name": "蒭藁增二 (Mira)", "ra": 34.8, "dec": -3.0, "type": "star", "mag": 6.5, "color": "0xff5522", "desc": "著名的「奇異之星」長周期脈動紅巨星變星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "phoenix",
+    "name": "鳳凰座",
+    "nameEn": "Phoenix",
+    "stars": [
+      {"name": "火鳥六 (Ankaa)", "ra": 6.6, "dec": -42.3, "type": "star", "mag": 2.39, "color": "0xffaa44", "desc": "鳳凰座主星，光譜雙星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "hydra",
+    "name": "長蛇座",
+    "nameEn": "Hydra",
+    "stars": [
+      {"name": "星宿一 (Alphard)", "ra": 141.0, "dec": -8.7, "type": "star", "mag": 1.98, "color": "0xffaa44", "desc": "意為「孤獨者」，長蛇座四周暗空唯一的亮星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "crater",
+    "name": "巨爵座",
+    "nameEn": "Crater",
+    "stars": [
+      {"name": "翼宿一 (α Crateris)", "ra": 164.8, "dec": -18.3, "type": "star", "mag": 4.07, "color": "0xffcc66", "desc": "古代代表酒杯的星座。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "corvus",
+    "name": "烏鴉座",
+    "nameEn": "Corvus",
+    "stars": [
+      {"name": "軫宿一 (Gienah)", "ra": 185.3, "dec": -17.5, "type": "star", "mag": 2.59, "color": "0xd0e0ff", "desc": "烏鴉座最亮星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "lupus",
+    "name": "豺狼座",
+    "nameEn": "Lupus",
+    "stars": [
+      {"name": "豺狼座α (Men)", "ra": 220.1, "dec": -47.4, "type": "star", "mag": 2.30, "color": "0xd0e0ff", "desc": "藍白巨星，仙王座β型變星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "corona_australis",
+    "name": "南冕座",
+    "nameEn": "Corona Australis",
+    "stars": [
+      {"name": "鱉六 (α Coronalis)", "ra": 287.8, "dec": -37.9, "type": "star", "mag": 4.10, "color": "0xffffff", "desc": "南天半環狀星冠主星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "ara",
+    "name": "祭壇座",
+    "nameEn": "Ara",
+    "stars": [
+      {"name": "祭壇座β", "ra": 258.1, "dec": -55.5, "type": "star", "mag": 2.84, "color": "0xffcc55", "desc": "銀河系背景中的南天祭壇主星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "scutum",
+    "name": "盾牌座",
+    "nameEn": "Scutum",
+    "stars": [
+      {"name": "野鴨星團 (M11)", "ra": 282.7, "dec": -6.2, "type": "cluster", "color": "0xffffaa", "desc": "天空中最緊密、最豐富多彩的疏散星團之一。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "octans",
+    "name": "南極座",
+    "nameEn": "Octans",
+    "stars": [
+      {"name": "南極星 (Sigma Octantis)", "ra": 317.4, "dec": -88.9, "type": "star", "mag": 5.45, "color": "0xffffcc", "desc": "地理南極點正上方的恆星。因十分暗淡，航海多改用南十字座定位。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "hydrus",
+    "name": "水蛇座",
+    "nameEn": "Hydrus",
+    "stars": [{"name": "水蛇座β", "ra": 6.4, "dec": -77.3, "type": "star", "mag": 2.8, "color": "0xfff4ea", "desc": "靠近小麥哲倫雲。"}], "lines": []
+  },
+  {
+    "id": "dorado",
+    "name": "劍魚座",
+    "nameEn": "Dorado",
+    "stars": [
+      {"name": "大麥哲倫雲 (LMC)", "ra": 80.8, "dec": -69.7, "type": "nebula", "color": "0xffffff", "desc": "銀河系的衛星矮星系，南天極著名的肉眼可見大星系。"},
+      {"name": "蜘蛛星雲 (NGC 2070)", "ra": 84.7, "dec": -69.1, "type": "nebula", "color": "0xff5588", "desc": "大麥哲倫雲內極度巨大的恆星暴生區。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "volans",
+    "name": "飛魚座",
+    "nameEn": "Volans",
+    "stars": [{"name": "飛魚座γ", "ra": 110.1, "dec": -70.4, "type": "star", "mag": 3.78, "color": "0xffcc44", "desc": "美麗的聯星。"}], "lines": []
+  },
+  {
+    "id": "chamaeleon",
+    "name": "蝘蜓座",
+    "nameEn": "Chamaeleon",
+    "stars": [{"name": "蝘蜓座α", "ra": 126.3, "dec": -76.8, "type": "star", "mag": 4.05, "color": "0xffffff", "desc": "南天深處小暗星。"}], "lines": []
+  },
+  {
+    "id": "musca",
+    "name": "蒼蠅座",
+    "nameEn": "Musca",
+    "stars": [{"name": "蒼蠅座α", "ra": 188.6, "dec": -69.1, "type": "star", "mag": 2.69, "color": "0xd0e0ff", "desc": "緊鄰南十字座。"}], "lines": []
+  },
+  {
+    "id": "apus",
+    "name": "天燕座",
+    "nameEn": "Apus",
+    "stars": [{"name": "天燕座α", "ra": 221.7, "dec": -79.0, "type": "star", "mag": 3.83, "color": "0xffaa44", "desc": "代表極樂鳥的南天深處星座。"}], "lines": []
+  },
+  {
+    "id": "norma",
+    "name": "矩尺座",
+    "nameEn": "Norma",
+    "stars": [{"name": "矩尺座γ2", "ra": 244.6, "dec": -50.1, "type": "star", "mag": 4.01, "color": "0xffaa44", "desc": "位於銀河核心帶中的暗星。"}], "lines": []
+  },
+  {
+    "id": "circinus",
+    "name": "圓規座",
+    "nameEn": "Circinus",
+    "stars": [{"name": "圓規座α", "ra": 220.2, "dec": -64.9, "type": "star", "mag": 3.19, "color": "0xffffff", "desc": "劍魚座旁的雙星。"}], "lines": []
+  },
+  {
+    "id": "telescopium",
+    "name": "望遠鏡座",
+    "nameEn": "Telescopium",
+    "stars": [{"name": "望遠鏡座α", "ra": 277.5, "dec": -45.9, "type": "star", "mag": 3.49, "color": "0xd0e0ff", "desc": "近代科學探索命名星座。"}], "lines": []
+  },
+  {
+    "id": "microscopium",
+    "name": "顯微鏡座",
+    "nameEn": "Microscopium",
+    "stars": [{"name": "顯微鏡座α", "ra": 312.4, "dec": -33.8, "type": "star", "mag": 4.88, "color": "0xffaa55", "desc": "極暗淡的近代命名星座。"}], "lines": []
+  },
+  {
+    "id": "caelum",
+    "name": "雕具座",
+    "nameEn": "Caelum",
+    "stars": [{"name": "雕具座α", "ra": 70.4, "dec": -41.8, "type": "star", "mag": 4.44, "color": "0xffffff", "desc": "南天雕刻鑿刀座。"}], "lines": []
+  },
+  {
+    "id": "horologium",
+    "name": "時鐘座",
+    "nameEn": "Horologium",
+    "stars": [{"name": "時鐘座α", "ra": 64.6, "dec": -42.3, "type": "star", "mag": 3.85, "color": "0xffaa44", "desc": "紅巨星。"}], "lines": []
+  },
+  {
+    "id": "pictor",
+    "name": "繪架座",
+    "nameEn": "Pictor",
+    "stars": [{"name": "繪架座α", "ra": 101.5, "dec": -61.9, "type": "star", "mag": 3.24, "color": "0xffffff", "desc": "靠近老人星。"}], "lines": []
+  },
+  {
+    "id": "reticulum",
+    "name": "網罟座",
+    "nameEn": "Reticulum",
+    "stars": [{"name": "網罟座α", "ra": 64.1, "dec": -62.5, "type": "star", "mag": 3.33, "color": "0xffcc44", "desc": "代表望遠鏡十字絲。"}], "lines": []
+  },
+  {
+    "id": "indus",
+    "name": "印第安座",
+    "nameEn": "Indus",
+    "stars": [{"name": "印第安座α", "ra": 309.6, "dec": -47.3, "type": "star", "mag": 3.11, "color": "0xffaa44", "desc": "南天亮星。"}], "lines": []
+  },
+  {
+    "id": "tucana",
+    "name": "杜鵑座",
+    "nameEn": "Tucana",
+    "stars": [
+      {"name": "小麥哲倫雲 (SMC)", "ra": 15.0, "dec": -72.8, "type": "nebula", "color": "0xddddff", "desc": "銀河系的另一個不規則衛星矮星系。"},
+      {"name": "杜鵑座 47 (NGC 104)", "ra": 6.0, "dec": -72.1, "type": "cluster", "color": "0xffffff", "desc": "全天第二大、極為密集的壯觀球狀星團。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "mensa",
+    "name": "山案座",
+    "nameEn": "Mensa",
+    "stars": [{"name": "山案座α", "ra": 93.4, "dec": -74.7, "type": "star", "mag": 5.08, "color": "0xffffff", "desc": "全天 88 星座中唯一沒有任何 4 等以上亮星、最暗淡的星座。"}], "lines": []
+  },
+  {
+    "id": "sculptor",
+    "name": "玉夫座",
+    "nameEn": "Sculptor",
+    "stars": [{"name": "玉夫座星系 (NGC 253)", "ra": 11.9, "dec": -25.3, "type": "nebula", "color": "0xffffff", "desc": "玉夫座內的銀元星系，星暴現象極其劇烈。"}], "lines": []
+  },
+  {
+    "id": "pyxis",
+    "name": "羅盤座",
+    "nameEn": "Pyxis",
+    "stars": [{"name": "羅盤座α", "ra": 134.1, "dec": -33.2, "type": "star", "mag": 3.68, "color": "0xd0e0ff", "desc": "古南船座拆分出的航海羅盤。"}], "lines": []
+  },
+  {
+    "id": "antlia",
+    "name": "唧筒座",
+    "nameEn": "Antlia",
+    "stars": [{"name": "唧筒座α", "ra": 157.9, "dec": -31.1, "type": "star", "mag": 4.28, "color": "0xffaa44", "desc": "代表科學抽氣唧筒。"}], "lines": []
+  },
+  {
+    "id": "sextans",
+    "name": "六分儀座",
+    "nameEn": "Sextans",
+    "stars": [{"name": "六分儀座α", "ra": 161.7, "dec": -0.2, "type": "star", "mag": 4.48, "color": "0xffffff", "desc": "位於天球赤道上的暗淡科學儀器星座。"}], "lines": []
+  }
+]
