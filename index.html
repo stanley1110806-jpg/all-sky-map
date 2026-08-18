@@ -3,50 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALL-SKY 88</title>
+    <title>3D 進階夏季星空天球模擬器 (手機版)</title>
+    <meta name="description" content="包含地球、天球經緯線與寫實星體特效的夏季星空模擬器">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* 這裡我補上基本的 CSS，確保你的 UI 元素能看得到 */
-        body { margin: 0; overflow: hidden; background: #000; color: white; font-family: sans-serif; }
-        #canvas-container { width: 100vw; height: 100vh; }
-        #ui-overlay { position: absolute; top: 20px; left: 20px; pointer-events: none; }
-        header h1 { margin: 0; font-size: 24px; }
-        #bottom-controls { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); width: 80%; pointer-events: auto; }
-        #const-menu { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; }
-        .const-btn { background: rgba(255,255,255,0.1); border: 1px solid #555; color: white; padding: 5px 10px; cursor: pointer; }
-        #sub-menu { background: rgba(0,0,0,0.7); padding: 10px; border-radius: 8px; margin-bottom: 10px; display: none; }
-        .star-grid { display: flex; flex-wrap: wrap; gap: 5px; }
-        .star-btn { background: #444; border: none; color: white; padding: 3px 8px; cursor: pointer; font-size: 12px; }
-        #detail-panel { 
-            position: absolute; right: -350px; top: 0; width: 300px; height: 100%; 
-            background: rgba(0,0,0,0.8); transition: right 0.3s; padding: 20px; 
-            box-sizing: border-box; border-left: 1px solid #444;
+        :root {
+            --primary-glow: rgba(100, 180, 255, 0.6);
+            --bg-dark: #02040a;
+            --panel-bg: rgba(10, 15, 30, 0.85);
+            --accent: #7aa2f7;
         }
-        #detail-panel.active { right: 0; }
-        .dp-drag-handle { width: 100%; height: 20px; cursor: move; background: #333; margin-bottom: 10px; }
-        #dp-close { position: absolute; top: 5px; right: 10px; background: none; border: none; color: white; font-size: 20px; cursor: pointer; }
-        .dp-divider { height: 1px; background: #444; margin: 10px 0; }
-        .dp-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
-        #star-label { position: absolute; pointer-events: none; display: none; color: white; text-shadow: 1px 1px 2px black; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            overflow: hidden; 
+            background: var(--bg-dark); 
+            font-family: 'Outfit', 'Noto Sans TC', sans-serif; 
+            color: #e0e8ff; 
+            user-select: none;
+        }
+
+        #canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        #ui-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px;
+        }
+
+        header { text-align: center; }
+        header h1 { 
+            font-size: 1.4rem; 
+            font-weight: 700; 
+            letter-spacing: 3px;
+            background: linear-gradient(to right, #89ddff, #c0caf5, #bb9af7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+        header p { font-size: 0.9rem; color: #565f89; letter-spacing: 3px; }
+
+        #star-label {
+            position: fixed;
+            pointer-events: none;
+            display: none;
+            transform: translate(-50%, -150%);
+            transition: opacity 0.2s;
+            z-index: 100;
+        }
+        .label-content {
+            background: var(--panel-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(122, 162, 247, 0.4);
+            border-radius: 12px;
+            padding: 8px 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--primary-glow);
+        }
+        .label-name { font-size: 1rem; font-weight: 600; color: #fff; text-shadow: 0 0 8px var(--primary-glow); }
+        .label-coords { font-size: 0.7rem; color: #7aa2f7; margin-top: 2px; }
+
+        #bottom-controls {
+            pointer-events: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            width: 100%;
+        }
+
+        #sub-menu {
+            display: none;
+            background: var(--panel-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 12px;
+            max-width: 90vw;
+            overflow-x: auto;
+            white-space: nowrap;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+        }
+        .star-grid { display: flex; gap: 8px; }
+        .star-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.85rem;
+            color: #a9b1d6;
+        }
+        .star-item:hover { 
+            background: rgba(122, 162, 247, 0.2); 
+            border-color: #7aa2f7; 
+            color: #fff;
+            transform: translateY(-4px);
+        }
+        .star-item.active { background: #7aa2f7; color: #1a1b26; border-color: #fff; font-weight: 600; }
+
+        #const-menu {
+            display: flex;
+            gap: 8px;
+            padding: 6px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 95vw;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        #const-menu::-webkit-scrollbar { display: none; }
+        .const-btn {
+            background: transparent;
+            border: none;
+            color: #787c99;
+            padding: 8px 16px; white-space: nowrap; font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.4s;
+            letter-spacing: 1px;
+        }
+        .const-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
+        .const-btn.active { 
+            background: linear-gradient(135deg, #7aa2f7, #bb9af7);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(122, 162, 247, 0.4);
+        }
+
+        /* 星體詳細資料面板 - 手機版 Bottom Sheet */
+        #detail-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(8, 12, 28, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(122, 162, 247, 0.3);
+            border-radius: 24px 24px 0 0;
+            padding: 24px 24px 40px;
+            pointer-events: auto;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.1, 0.9, 0.2, 1);
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+        }
+        #detail-panel.visible { transform: translateY(0); }
+        .dp-drag-handle {
+            width: 40px;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+            margin: -10px auto 16px;
+        }
+        .dp-close {
+            position: absolute;
+            top: 16px;
+            right: 24px;
+            font-size: 24px;
+            color: rgba(255,255,255,0.5);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .dp-close:hover { color: white; }
+        .dp-type {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .dp-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+        .dp-divider {
+            height: 1px;
+            background: linear-gradient(to right, rgba(122,162,247,0.5), transparent);
+            margin: 12px 0;
+        }
+        .dp-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+            font-size: 0.78rem;
+        }
+        .dp-label { color: #565f89; }
+        .dp-value { color: #c0caf5; font-weight: 600; }
+        .dp-desc {
+            margin-top: 14px;
+            font-size: 0.75rem;
+            color: #787c99;
+            line-height: 1.6;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 12px;
+        }
+
+        .summer-triangle-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(255,200,60,0.2), rgba(255,160,30,0.15));
+            border: 1px solid rgba(255,200,60,0.4);
+            border-radius: 20px;
+            padding: 2px 10px;
+            font-size: 0.65rem;
+            color: #ffc83c;
+            margin-top: 6px;
+            letter-spacing: 1px;
+        }
+
+        #sub-menu::-webkit-scrollbar { height: 4px; }
+        #sub-menu::-webkit-scrollbar-track { background: transparent; }
+        #sub-menu::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
     </style>
 </head>
 <body>
     <div id="canvas-container"></div>
     
-    <div id="star-label"><div class="label-content"><div class="label-name" id="l-name"></div><div class="label-coords" id="l-coords"></div></div></div>
-    
+    <div id="star-label">
+        <div class="label-content">
+            <div class="label-name" id="l-name"></div>
+            <div class="label-coords" id="l-coords"></div>
+        </div>
+    </div>
+
     <div id="detail-panel">
-        <div class="dp-drag-handle"></div><button id="dp-close">&times;</button>
-        <div id="dp-type" style="color: #aaa; font-size: 12px;"></div>
-        <div id="dp-name" style="font-size: 24px; font-weight: bold;"></div>
+        <div class="dp-drag-handle" id="dp-handle"></div>
+        <button class="dp-close" id="dp-close">&times;</button>
+        <div class="dp-type" id="dp-type"></div>
+        <div class="dp-name" id="dp-name"></div>
+        <div id="dp-badge"></div>
         <div class="dp-divider"></div>
-        <div class="dp-row"><span>赤經 RA</span><span id="dp-ra"></span></div>
-        <div class="dp-row"><span>赤緯 Dec</span><span id="dp-dec"></span></div>
-        <div class="dp-row" id="dp-mag-row"><span>視星等</span><span id="dp-mag"></span></div>
-        <div id="dp-desc" style="margin-top: 15px; line-height: 1.6; font-size: 14px;"></div>
+        <div class="dp-row"><span class="dp-label">赤經 RA</span><span class="dp-value" id="dp-ra"></span></div>
+        <div class="dp-row"><span class="dp-label">赤緯 Dec</span><span class="dp-value" id="dp-dec"></span></div>
+        <div class="dp-row" id="dp-mag-row"><span class="dp-label">視星等</span><span class="dp-value" id="dp-mag"></span></div>
+        <div class="dp-row" id="dp-dist-row"><span class="dp-label">距離</span><span class="dp-value" id="dp-dist"></span></div>
+        <div class="dp-desc" id="dp-desc"></div>
     </div>
 
     <div id="ui-overlay">
-        <header><h1>ALL-SKY 88</h1><p>全天 88 星座管理系統</p></header>
+        <header>
+            <h1>ALL-SKY 88</h1>
+            <p>全天星座管理系統</p>
+        </header>
+
         <div id="bottom-controls">
             <div id="sub-menu"><div class="star-grid" id="star-btns"></div></div>
             <div id="const-menu"></div>
@@ -65,37 +279,59 @@
         import * as THREE from 'three';
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
+        // --- 變數宣告 ---
         let CONSTELLATIONS = [];
         const starEntries = [];
         const constGroups = [];
         const sphereRadius = 150;
 
-        // --- 初始化 Three.js 環境 ---
+        // --- Three.js 環境 ---
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 2000);
-        camera.position.set(0, 2, 5); 
+        camera.position.set(0, 2, 5);
+
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
         document.getElementById('canvas-container').appendChild(renderer.domElement);
+
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
+        controls.minDistance = 0;
+        controls.maxDistance = 500;
 
-        // --- 修正 1: 補完星星貼圖生成函數 ---
+        // --- 貼圖生成 ---
         function createStarTexture() {
             const canvas = document.createElement('canvas');
-            canvas.width = 64;
-            canvas.height = 64;
+            canvas.width = 64; canvas.height = 64;
             const ctx = canvas.getContext('2d');
-            const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-            grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
-            grad.addColorStop(0.2, 'rgba(255, 255, 255, 0.8)');
-            grad.addColorStop(0.5, 'rgba(255, 255, 255, 0.2)');
-            grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
-            ctx.fillStyle = grad;
+            const grd = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+            grd.addColorStop(0, 'rgba(255,255,255,1)');
+            grd.addColorStop(0.2, 'rgba(255,255,255,0.8)');
+            grd.addColorStop(0.5, 'rgba(255,255,255,0.2)');
+            grd.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = grd;
             ctx.fillRect(0, 0, 64, 64);
             return new THREE.CanvasTexture(canvas);
         }
         const starTex = createStarTexture();
+
+        function createNebulaTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 128; canvas.height = 128;
+            const ctx = canvas.getContext('2d');
+            for(let i=0; i<15; i++) {
+                const x = Math.random()*128; const y = Math.random()*128;
+                const r = 10 + Math.random()*40;
+                const g = ctx.createRadialGradient(x,y,0,x,y,r);
+                g.addColorStop(0, 'rgba(255,255,255,0.1)');
+                g.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = g;
+                ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
+            }
+            return new THREE.CanvasTexture(canvas);
+        }
+        const nebulaTex = createNebulaTexture();
 
         function calculatePosition(ra, dec, radius) {
             const phi = (90 - dec) * (Math.PI / 180);
@@ -103,43 +339,39 @@
             return new THREE.Vector3(radius * Math.sin(phi) * Math.cos(theta), radius * Math.cos(phi), radius * Math.sin(phi) * Math.sin(theta));
         }
 
+        // --- 核心：載入外部 JSON ---
         async function loadConstellationData() {
             try {
                 const response = await fetch('./constellations.json');
-                if (!response.ok) throw new Error("JSON 檔案讀取失敗，請確認檔案路徑與格式");
+                if (!response.ok) throw new Error("無法讀取 JSON 檔案");
                 CONSTELLATIONS = await response.json();
                 buildSkyMap();
                 buildUIButtons();
             } catch (error) {
                 console.error("載入失敗:", error);
-                alert("載入 JSON 失敗！請檢查控制台(F12)或確認 JSON 是否有錯誤（如 223.aff 這種非數字字串）。");
+                alert("JSON 讀取失敗！請檢查檔案路徑或 JSON 格式錯誤（例如 RA 是否包含非數字字元）。");
             }
         }
 
         function buildSkyMap() {
             CONSTELLATIONS.forEach((con, ci) => {
                 const starMeshes = [];
-                
                 con.stars.forEach((s, si) => {
                     const pos = calculatePosition(s.ra, s.dec, sphereRadius);
-                    
-                    // --- 修正 2: 處理星雲/星團沒有 mag 的問題 ---
                     let size;
                     if (s.type === 'nebula' || s.type === 'cluster') {
-                        size = 12; 
+                        size = 12;
                     } else {
                         const mag = s.mag !== undefined ? s.mag : 3.0;
                         size = Math.max(1.5, (5 - mag) * 1.5);
                     }
-
-                    // --- 修正 3: 顏色解析安全化 ---
                     const colorHex = parseInt(s.color.replace('0x', ''), 16);
-                    
                     const mat = new THREE.SpriteMaterial({ 
-                        map: starTex, 
+                        map: (s.type === 'star' ? starTex : nebulaTex), 
                         color: colorHex, 
                         transparent: true, 
-                        blending: THREE.AdditiveBlending 
+                        blending: THREE.AdditiveBlending,
+                        opacity: s.type === 'star' ? 1 : 0.7
                     });
                     const obj = new THREE.Sprite(mat);
                     obj.position.copy(pos);
@@ -157,7 +389,6 @@
                         linePoints.push(starMeshes[a].mesh.position.clone(), starMeshes[b].mesh.position.clone());
                     }
                 });
-                
                 if (linePoints.length > 0) {
                     const lineGeo = new THREE.BufferGeometry().setFromPoints(linePoints);
                     const lineMat = new THREE.LineBasicMaterial({ color: 0x7aa2f7, transparent: true, opacity: 0 });
@@ -184,34 +415,37 @@
         let activeCi = -1;
         function toggleConst(ci) {
             const subMenu = document.getElementById('sub-menu');
-            const starBtnsContainer = document.getElementById('star-btns');
+            const starBtns = document.getElementById('star-btns');
+            const allConstBtns = document.querySelectorAll('.const-btn');
 
             if(activeCi === ci) {
                 activeCi = -1;
                 constGroups.forEach(g => { if(g.material) g.material.opacity = 0; });
                 subMenu.style.display = 'none';
+                allConstBtns.forEach(b => b.classList.remove('active'));
                 return;
             }
-            
-            activeCi = ci;
-            constGroups.forEach((g, i) => {
-                if(g.material) g.material.opacity = (i === ci ? 0.6 : 0);
-            });
 
-            // --- 修正 4: 補完子選單星星按鈕生成邏輯 ---
+            activeCi = ci;
+            constGroups.forEach((g, i) => { if(g.material) g.material.opacity = (i === ci ? 0.6 : 0); });
+            allConstBtns.forEach((b, i) => b.classList.toggle('active', i === ci));
+
+            // 生成子選單按鈕
             subMenu.style.display = 'block';
-            starBtnsContainer.innerHTML = '';
-            CONSTELLATIONS[ci].stars.forEach((s) => {
-                const btn = document.createElement('button');
-                btn.className = 'star-btn';
+            starBtns.innerHTML = '';
+            CONSTELLATIONS[ci].stars.forEach((s, si) => {
+                const btn = document.createElement('div');
+                btn.className = 'star-item';
                 btn.textContent = s.name;
-                btn.onclick = () => showDetail(s);
-                starBtnsContainer.appendChild(btn);
+                btn.onclick = () => selectStar(starEntries.find(e => e.ci === ci && e.si === si));
+                starBtns.appendChild(btn);
             });
         }
 
-        // --- 修正 5: 實作 Detail Panel 內容填充 ---
-        function showDetail(s) {
+        function selectStar(entry) {
+            const s = entry.data;
+            const panel = document.getElementById('detail-panel');
+            
             document.getElementById('dp-name').textContent = s.name;
             document.getElementById('dp-type').textContent = (s.type || 'star').toUpperCase();
             document.getElementById('dp-ra').textContent = s.ra.toFixed(2);
@@ -221,20 +455,30 @@
             if (s.mag !== undefined) {
                 magRow.style.display = 'flex';
                 document.getElementById('dp-mag').textContent = s.mag;
-            } else {
-                magRow.style.display = 'none';
-            }
-            
+            } else { magRow.style.display = 'none'; }
+
+            const distRow = document.getElementById('dp-dist-row');
+            if (s.dist) {
+                distRow.style.display = 'flex';
+                document.getElementById('dp-dist').textContent = s.dist;
+            } else { distRow.style.display = 'none'; }
+
             document.getElementById('dp-desc').textContent = s.desc || '';
-            document.getElementById('detail-panel').classList.add('active');
+            panel.classList.add('visible');
         }
 
-        // 關閉面板
-        document.getElementById('dp-close').onclick = () => {
-            document.getElementById('detail-panel').classList.remove('active');
-        };
+        // --- 初始化與渲染 ---
+        const earthGeo = new THREE.SphereGeometry(4, 32, 32);
+        const earthMat = new THREE.MeshPhongMaterial({ color: 0x336699, emissive: 0x1a4488 });
+        const earth = new THREE.Mesh(earthGeo, earthMat);
+        scene.add(earth);
+        scene.add(new THREE.AmbientLight(0x404040, 2));
+        const light = new THREE.PointLight(0xffffff, 100, 500);
+        light.position.set(10, 10, 10);
+        scene.add(light);
 
-        // --- 修正 6: 視窗縮放處理 ---
+        document.getElementById('dp-close').onclick = () => document.getElementById('detail-panel').classList.remove('visible');
+
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
@@ -246,6 +490,7 @@
         function animate() {
             requestAnimationFrame(animate);
             controls.update();
+            earth.rotation.y += 0.001;
             renderer.render(scene, camera);
         }
         animate();
