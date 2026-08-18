@@ -356,7 +356,7 @@
     "name": "天秤座",
     "nameEn": "Libra",
     "stars": [
-      {"name": "氐宿一 (Zubenelgenubi)", "ra": 223.aff, "dec": -16.0, "type": "star", "mag": 2.75, "color": "0xffffff", "desc": "意為「南邊的螯」，肉眼可分開的雙星。"},
+      {"name": "氐宿一 (Zubenelgenubi)", "ra": 223.5, "dec": -16.0, "type": "star", "mag": 2.75, "color": "0xffffff", "desc": "意為「南邊的螯」，肉眼可分開的雙星。"},
       {"name": "氐宿四 (Zubeneschamali)", "ra": 229.2, "dec": -9.4, "type": "star", "mag": 2.61, "color": "0xccffcc", "desc": "全天極少數肉眼能看出帶有微綠色調的奇特恆星。"}
     ],
     "lines": [[0, 1]]
