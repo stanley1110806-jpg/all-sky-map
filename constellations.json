@@ -762,5 +762,169 @@
     "name": "六分儀座",
     "nameEn": "Sextans",
     "stars": [{"name": "六分儀座α", "ra": 161.7, "dec": -0.2, "type": "star", "mag": 4.48, "color": "0xffffff", "desc": "位於天球赤道上的暗淡科學儀器星座。"}], "lines": []
+  },
+  {
+    "id": "hydrus",
+    "name": "水蛇座",
+    "nameEn": "Hydrus",
+    "stars": [
+      {"name": "水蛇座β", "ra": 6.4, "dec": -77.3, "type": "star", "mag": 2.8, "color": "0xfff4ea", "dist": "150 光年", "desc": "靠近小麥哲倫雲。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "dorado",
+    "name": "劍魚座",
+    "nameEn": "Dorado",
+    "stars": [
+      {"name": "大麥哲倫雲 (LMC)", "ra": 80.8, "dec": -69.7, "type": "nebula", "mag": 0.9, "color": "0xffffff", "dist": "16 萬光年", "desc": "銀河系的衛星矮星系。"},
+      {"name": "蜘蛛星雲 (NGC 2070)", "ra": 84.7, "dec": -69.1, "type": "nebula", "mag": 5.0, "color": "0xff5588", "dist": "150 光年", "desc": "星雲。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "volans",
+    "name": "飛魚座",
+    "nameEn": "Volans",
+    "stars": [
+      {"name": "飛魚座γ", "ra": 110.1, "dec": -70.4, "type": "star", "mag": 3.78, "color": "0xffcc44", "dist": "150 光年", "desc": "美麗的聯星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "chamaeleon",
+    "name": "蝘蜓座",
+    "nameEn": "Chamaeleon",
+    "stars": [
+      {"name": "蝘蜓座α", "ra": 126.3, "dec": -76.8, "type": "star", "mag": 4.05, "color": "0xffffff", "dist": "150 光年", "desc": "南天深處小暗星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "musca",
+    "name": "蒼蠅座",
+    "nameEn": "Musca",
+    "stars": [
+      {"name": "蒼蠅座α", "ra": 188.6, "dec": -69.1, "type": "star", "mag": 2.69, "color": "0xd0e0ff", "dist": "150 光年", "desc": "緊鄰南十字座。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "apus",
+    "name": "天燕座",
+    "nameEn": "Apus",
+    "stars": [
+      {"name": "天燕座α", "ra": 221.7, "dec": -79.0, "type": "star", "mag": 3.83, "color": "0xffaa44", "dist": "150 光年", "desc": "代表極樂鳥的南天深處星座。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "norma",
+    "name": "name": "矩尺座",
+    "nameEn": "Norma",
+    "stars": [
+      {"name": "矩尺座γ2", "ra": 244.ate, "dec": -50.1, "type": "star", "mag": 4.01, "color": "0xffaa44", "dist": "150 光年", "desc": "暗星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "circinus",
+    "name": "圓規座",
+    "nameEn": "Circinus",
+    "stars": [
+      {"name": "圓規座α", "ra": 220.2, "dec": -64.9, "type": "star", "mag": 3.19, "color": "0xffffff", "dist": "150 光年", "desc": "劍魚座旁的雙星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "telescopium",
+    "name": "望遠鏡座",
+    "nameEn": "Telescopium",
+    "stars": [
+      {"name": "望遠鏡座α", "ra": 277.5, "dec": -45.9, "type": "star", "mag": 3.49, "color": "0xd0e0ff", "dist": "150 光年", "desc": "近代科學探索命名星座。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "microscopium",
+    "name": "小顯微鏡座",
+    "nameEn": "Microscopium",
+    "stars": [
+      {"name": "顯微鏡座α", "ra": 312.4, "dec": -33.8, "type": "star", "mag": 4.88, "color": "0xffaa55", "dist": "150 光年", "desc": "極暗淡的近代命名星座。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "caelum",
+    "name": "雕具座",
+    "nameEn": "Caelum",
+    "stars": [
+      {"name": "雕具座α", "ra": 70.4, "dec": -41.8, "type": "star", "mag": 4.44, "color": "0xffffff", "dist": "150 光年", "desc": "南天雕刻鑿刀座。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "horologium",
+    "name": "name": "時鐘座",
+    "nameEn": "Horologium",
+    "stars": [
+      {"name": "時鐘座α", "ra": 64.6, "dec": -42.3, "type": "star", "mag": 3.85, "color": "0xffaa44", "dist": "150 光年", "desc": "紅巨星。"}
+    ],
+    "lines": []
+  },
+    {
+    "id": "pictor",
+    "name": "繪架座",
+    "nameEn": "Pictor",
+    "stars": [
+      {"name": "繪架座α", "ra": 101.5, "dec": -61.9, "type": "star", "mag": 3.24, "color": "0xffffff", "dist": "150 光年", "desc": "靠近老人星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "reticulum",
+    "name": "網罟座",
+    "nameEn": "Reticulum",
+    "stars": [
+      {"name": "網罟座α", "ra": 64.1, "dec": -62.5, "type": "star", "mag": 3.33, "color": "0xffcc44", "dist": "150 光年", "desc": "代表望遠鏡十字絲。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "indus",
+    "name": "印第安座",
+    "nameEn": "Indus",
+    "stars": [
+      {"name": "印第安座α", "ra": 309.6, "dec": -47.3, "type": "star", "mag": 3.11, "color": "0xffaa44", "dist": "150 光年", "desc": "南天亮星。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "tucana",
+    "name": "杜鵑座",
+    "nameEn": "Tucana",
+    "stars": [
+      {"name": "小麥哲倫雲 (SMC)", "ra": 15.0, "dec": -72.8, "type": "nebula", "mag": 0.9, "color": "0xddddff", "dist": "16 萬光年", "desc": "銀河系的衛星矮星系。"},
+      {"name": "杜鵑座 47 (NGC 104)", "ra": 6.0, "dec": -72.1, "type": "cluster", "mag": 4.0, "color": "0xffffff", "dist": "150 光年", "desc": "壯觀的球狀星團。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "mensa",
+    "name": "山案座",
+    "nameEn": "Mensa",
+    "stars": [
+      {"name": "山案座α", "ra": 93.4, "dec": -74.7, "type": "star", "mag": 5.08, "color": "0xffffff", "dist": "150 光年", "desc": "最暗淡的星座。"}
+    ],
+    "lines": []
+  },
+  {
+    "id": "sculptor",
+    "name": "name": "玉夫座",
+    "nameEn": "Sculptor",
+    "stars": [
+      {"name": "玉夫座星系 (NGC 253)", "ra": 11.9, "dec": -25.3, "type": "nebula", "mag: 5.0, color: 0xffffff, dist: 150, desc: '銀元星系'"}
+    ],
+    "lines": []
   }
 ]
